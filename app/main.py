@@ -8,6 +8,7 @@ def main():
         sys.stdout.flush()
 
         PATH = os.environ.get("PATH")
+        cwd = os.getcwd()
         # Wait for user input
         command = input()
 
@@ -30,6 +31,8 @@ def main():
                         break
                 if not found:
                     print(f"{shell_command} not found")
+        elif command == 'pwd':
+            print(f"{cwd}")
         else:
             command_parts = command[0:].split()
 
