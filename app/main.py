@@ -1,5 +1,6 @@
 import sys
 import os
+import subprocess
 
 def main():
     while True: 
@@ -30,7 +31,22 @@ def main():
                 if not found:
                     print(f"{shell_command} not found")
         else:
-            sys.stdout.write(f"{command}: command not found\n")
+            command_parts = command[1:].split()
+
+            program = command_parts[0]
+            arguments = command_parts[1:]
+
+            found = False
+            paths = PATH.split(':')
+            for path in paths:
+                executable_path = os.path.join(path, program)
+                if os.path.isfile(executable_path) and os.access(executable_path, os.X_OK):
+                    command_output = subprocess.run([executable_path] + arguments, capture_output=True, text=True)
+                    print(command_output.stdout, end='')
+                    found = True
+                    break
+            if not found:   
+                sys.stdout.write(f"{command}: command not found\n")
 
 if __name__ == "__main__":
     main()
