@@ -42,7 +42,9 @@ def main():
                 except FileNotFoundError:
                     print(f"cd: {full_path}: No such file or directory")
             elif new_directory.startswith('~'):
-                os.chdir(new_directory)
+                home_directory = os.path.expanduser("~")
+                os.chdir(home_directory)
+
             else:
                 try:
                     os.chdir(new_directory)
