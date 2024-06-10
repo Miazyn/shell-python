@@ -11,6 +11,8 @@ def main():
 
         if command == 'exit 0':
             sys.exit(0)
+        elif command.startswith('echo '):
+            print(command[5: ])
         else:
             sys.stdout.write(f"{command}: command not found\n")
 
