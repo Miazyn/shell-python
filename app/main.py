@@ -31,7 +31,7 @@ def main():
                 if not found:
                     print(f"{shell_command} not found")
         else:
-            command_parts = command[1:].split()
+            command_parts = command[0:].split()
 
             program = command_parts[0]
             arguments = command_parts[1:]
