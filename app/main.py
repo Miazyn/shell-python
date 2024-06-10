@@ -6,6 +6,7 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
 
+        PATH = os.environ.get("PATH")
         # Wait for user input
         command = input()
 
@@ -19,10 +20,11 @@ def main():
                 print(f"{shell_command} is a shell builtin")
             else:
                 found = False
-                for path in os.environment.get('PATH', '').split(':'):
+                paths = PATH.split(':')
+                for path in paths:
                     executable_path = os.path.join(path, shell_command)
                     if os.path.isfile(executable_path) and os.access(executable_path, os.X_OK):
-                        print(f"{shell_command} is {executable_path}")
+                        print(f"{shell_command} is {executable_command}")
                         found = True
                         break
                 if not found:
