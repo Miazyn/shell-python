@@ -33,6 +33,12 @@ def main():
                     print(f"{shell_command} not found")
         elif command == 'pwd':
             print(f"{cwd}")
+        elif command.startswith('cd '):
+            new_directory = command[3:].strip()
+            try:
+                os.chdir(new_directory)
+            except FileNotFoundError:
+                print(f"cd: {new_directory}: No such file or directory")
         else:
             command_parts = command[0:].split()
 
