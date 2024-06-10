@@ -35,10 +35,17 @@ def main():
             print(f"{cwd}")
         elif command.startswith('cd '):
             new_directory = command[3:].strip()
-            try:
-                os.chdir(new_directory)
-            except FileNotFoundError:
-                print(f"cd: {new_directory}: No such file or directory")
+            if new_directory.startswith('.'):
+                full_path = os.path.join(cwd, new_directory)
+                try:
+                   os.chdir(full_path)
+                except FileNotFoundError:
+                    print(f"cd: {full_path}: No such file or directory")
+            else:
+                try:
+                    os.chdir(new_directory)
+                except FileNotFoundError:
+                    print(f"cd: {new_directory}: No such file or directory")
         else:
             command_parts = command[0:].split()
 
