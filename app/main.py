@@ -40,7 +40,6 @@ def main():
             paths = PATH.split(':')
             for path in paths:
                 executable_path = os.path.join(path, program)
-                print(f"trying {executable_path}")
                 if os.path.isfile(executable_path) and os.access(executable_path, os.X_OK):
                     command_output = subprocess.run([executable_path] + arguments, capture_output=True, text=True)
                     print(command_output.stdout, end='')
