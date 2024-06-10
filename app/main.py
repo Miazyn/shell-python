@@ -24,7 +24,7 @@ def main():
                 for path in paths:
                     executable_path = os.path.join(path, shell_command)
                     if os.path.isfile(executable_path) and os.access(executable_path, os.X_OK):
-                        print(f"{shell_command} is {executable_command}")
+                        print(f"{shell_command} is {executable_path}")
                         found = True
                         break
                 if not found:
